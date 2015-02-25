@@ -232,7 +232,7 @@ MACRO(SETUP_PLUGIN PLUGIN_NAME)
 
     SETUP_LINK_LIBRARIES()
 
-#the installation path are differentiated for win32 that install in bib versus other architecture that install in lib${LIB_POSTFIX}/${VPB_PLUGINS}
+#the installation path are differentiated for win32 that install in bib versus other architecture that install in lib/${VPB_PLUGINS}
     IF(WIN32)
         INSTALL(TARGETS ${TARGET_TARGETNAME} RUNTIME DESTINATION bin ARCHIVE DESTINATION lib/${OSG_PLUGINS} LIBRARY DESTINATION bin/${OSG_PLUGINS} )
 	    
@@ -242,11 +242,11 @@ MACRO(SETUP_PLUGIN PLUGIN_NAME)
 		ENDIF(OSGEARTH_INSTALL_TO_OSG_DIR AND OSG_DIR)
 		
     ELSE(WIN32)
-        INSTALL(TARGETS ${TARGET_TARGETNAME} RUNTIME DESTINATION bin ARCHIVE DESTINATION lib${LIB_POSTFIX}/${OSG_PLUGINS} LIBRARY DESTINATION lib${LIB_POSTFIX}/${OSG_PLUGINS} )
+        INSTALL(TARGETS ${TARGET_TARGETNAME} RUNTIME DESTINATION bin ARCHIVE DESTINATION lib/${OSG_PLUGINS} LIBRARY DESTINATION lib/${OSG_PLUGINS} )
 
 		#Install to the OSG_DIR as well
 		IF(OSGEARTH_INSTALL_TO_OSG_DIR AND OSG_DIR)
-		  INSTALL(TARGETS ${TARGET_TARGETNAME} RUNTIME DESTINATION ${OSG_DIR}/bin LIBRARY DESTINATION lib${LIB_POSTFIX}/bin)
+		  INSTALL(TARGETS ${TARGET_TARGETNAME} RUNTIME DESTINATION ${OSG_DIR}/bin LIBRARY DESTINATION lib/bin)
 		ENDIF(OSGEARTH_INSTALL_TO_OSG_DIR AND OSG_DIR)
 		
     ENDIF(WIN32)
@@ -304,7 +304,7 @@ MACRO(SETUP_EXTENSION PLUGIN_NAME)
 
     SETUP_LINK_LIBRARIES()
 
-#the installation path are differentiated for win32 that install in bib versus other architecture that install in lib${LIB_POSTFIX}/${VPB_PLUGINS}
+#the installation path are differentiated for win32 that install in bib versus other architecture that install in lib/${VPB_PLUGINS}
     IF(WIN32)
         INSTALL(
             TARGETS ${TARGET_TARGETNAME}
@@ -324,15 +324,15 @@ MACRO(SETUP_EXTENSION PLUGIN_NAME)
         INSTALL(
             TARGETS ${TARGET_TARGETNAME} 
             RUNTIME DESTINATION bin 
-            ARCHIVE DESTINATION lib${LIB_POSTFIX}/${OSG_PLUGINS} 
-            LIBRARY DESTINATION lib${LIB_POSTFIX}/${OSG_PLUGINS} )
+            ARCHIVE DESTINATION lib/${OSG_PLUGINS} 
+            LIBRARY DESTINATION lib/${OSG_PLUGINS} )
 
 		#Install to the OSG_DIR as well
 		IF(OSGEARTH_INSTALL_TO_OSG_DIR AND OSG_DIR)
 		    INSTALL(
                 TARGETS ${TARGET_TARGETNAME}
                 RUNTIME DESTINATION ${OSG_DIR}/bin
-                LIBRARY DESTINATION lib${LIB_POSTFIX}/bin )
+                LIBRARY DESTINATION lib/bin )
 		ENDIF(OSGEARTH_INSTALL_TO_OSG_DIR AND OSG_DIR)
 		
     ENDIF(WIN32)
